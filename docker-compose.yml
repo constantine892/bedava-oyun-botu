@@ -1,0 +1,19 @@
+# THIS DOCKER COMPOSE FILE IS USED TO BOOT UP THE
+# DEVELOPMENT ENVIRONMENT. THIS COMPOSE FILE DOES
+# NOT LAUNCH FREESTUFF. PLEASE CREATE YOUR OWN
+# DEPLOYMENT CONFIGURATION.
+
+version: "3.3"
+
+networks:
+  local:
+    driver: bridge
+
+services:
+  rabbit:
+    image: rabbitmq:latest
+    healthcheck:
+      test: rabbitmq-diagnostics -q ping
+      interval: 30s
+      timeout: 30s
+      retries: 3
